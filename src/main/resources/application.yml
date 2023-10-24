@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpashop;
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+#        show_sql: true # System.out 으로 SQL 로그를 남김
+        format_sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug # 로깅 라이브러리를 통해 SQL 로그를 남김
+    org.hibernate.orm.jdbc.bind: trace # SQL 파라미터 바인딩 정보를 보여줌
