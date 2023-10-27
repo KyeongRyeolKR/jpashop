@@ -100,4 +100,21 @@ public class OrderRepository {
                 " join fetch o.delivery d", Order.class)
                 .getResultList();
     }
+
+    /**
+     * 하이버네이트 6버전(스프링부트 3.x)부터는 fetch join 사용 시 distinct 자동 추가
+     */
+    public List<Order> findAllWithItem() {
+        return em.createQuery("select o from Order o" +
+                " join fetch o.member m" +
+                " join fetch o.delivery d" +
+                " join fetch o.orderItems oi" + // 일대다 페치 조인
+                " join fetch oi.item i", Order.class)
+                // 일대다 페치 조인은 페이징하면 안됨!!
+                // 모든 데이터를 메모리에 올려두고 sorting 하기 때문에
+                // 데이터가 많으면 OutOfMemory 터질 수 있음
+//                .setFirstResult(1)
+//                .setMaxResults(100)
+                .getResultList();
+    }
 }
