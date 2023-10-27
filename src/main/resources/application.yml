@@ -13,6 +13,7 @@ spring:
 #        show_sql: true # System.out 으로 SQL 로그를 남김
         format_sql: true
         default_batch_fetch_size: 100
+    open-in-view: false # OSIV 옵션 : 트랜잭션 종료 시, 영속성 컨텍스트 및 DB 커넥션 반환(default : true)
 
 logging:
   level:
